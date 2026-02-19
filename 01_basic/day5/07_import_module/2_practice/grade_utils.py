@@ -22,7 +22,9 @@ def calculate_class_average(grades: List[int]) -> float:
     # TODO: 반 전체 평균 계산
     # 힌트: if grades가 비어있지 않으면
     #       sum(grades) / len(grades)
-    pass  # 이 줄을 삭제하고 코드 작성
+    if grades:
+        return sum(grades) / len(grades)
+    return 0.0
 
 
 def find_highest_grade(grades: List[int]) -> int:
@@ -52,7 +54,9 @@ def find_lowest_grade(grades: List[int]) -> int:
     """
     # TODO: 최저 점수 찾기
     # 힌트: find_highest_grade와 비슷하지만 min() 사용
-    pass  # 이 줄을 삭제하고 코드 작성
+    if not grades:
+        return 0
+    return min(grades)
 
 
 def count_passing_students(grades: List[int], passing_score: int = 60) -> int:
@@ -69,7 +73,7 @@ def count_passing_students(grades: List[int], passing_score: int = 60) -> int:
     # TODO: 합격자 수 세기
     # 힌트: passing_score 이상인 점수가 몇 개인지 세기
     #       리스트 컴프리헨션과 len() 사용
-    pass  # 이 줄을 삭제하고 코드 작성
+    return len([g for g in grades if g >= passing_score])
 
 
 def get_grade_distribution(grades: List[int]) -> dict:
@@ -124,7 +128,12 @@ def format_grade_report(
     # 평균 점수: 75.5점
     # 최고 점수: 98점
     # 최저 점수: 45점
-    pass  # 이 줄을 삭제하고 코드 작성
+    return (
+        f"총 학생 수: {total_students}명\n"
+        f"평균 점수: {average:.1f}점\n"
+        f"최고 점수: {highest}점\n"
+        f"최저 점수: {lowest}점"
+    )
 
 
 # 직접 실행 시 테스트

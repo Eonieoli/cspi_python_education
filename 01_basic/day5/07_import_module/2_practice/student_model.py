@@ -49,7 +49,9 @@ class Student:
         # 힌트: if self.grades가 비어있지 않으면
         #       sum(self.grades) / len(self.grades)
         #       비어있으면 0.0 반환
-        pass  # 이 줄을 삭제하고 코드 작성
+        if self.grades:
+            return sum(self.grades) / len(self.grades)
+        return 0.0
     
     def get_grade_letter(self) -> str:
         """
@@ -65,7 +67,17 @@ class Student:
         #       70점 이상: "C"
         #       60점 이상: "D"
         #       60점 미만: "F"
-        pass  # 이 줄을 삭제하고 코드 작성
+        avg = self.get_average()
+        if avg >= 90:
+            return "A"
+        elif avg >= 80:
+            return "B"
+        elif avg >= 70:
+            return "C"
+        elif avg >= 60:
+            return "D"
+        else:
+            return "F"
     
     def get_info(self) -> str:
         """
