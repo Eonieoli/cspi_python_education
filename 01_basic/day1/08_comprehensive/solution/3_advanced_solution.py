@@ -9,8 +9,8 @@ Day 1 - 8교시: 종합 실습
 # 정답 코드
 # ============================================
 
-# 1. CSV 데이터 입력받기
-data = input("CSV 데이터를 입력하세요 (이름,나이,이메일): ")
+# 1. CSV 데이터 입력받기 (이름은 영어 이름)
+data = input("CSV 데이터를 입력하세요 (영어이름,나이,이메일): ")
 
 # 2. 데이터 분리하기 (쉼표로 분리)
 parts = data.split(',')
@@ -18,7 +18,7 @@ name_raw = parts[0]      # 첫 번째 항목
 age_raw = parts[1]       # 두 번째 항목
 email_raw = parts[2]     # 세 번째 항목
 
-# 3. 이름 정제하기
+# 3. 영어 이름 정제하기
 name_clean = name_raw.strip()             # 공백 제거
 name_parts = name_clean.split()           # 공백으로 분리
 first_name = name_parts[0][0].upper() + name_parts[0][1:].lower()   # 첫 단어
