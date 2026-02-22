@@ -93,6 +93,3 @@ class Rectangle:
 
 rect = Rectangle(10, 5)
 print(f"사각형 넓이: {rect.area}")  # 출력: 사각형 넓이: 50 (메서드인데 ()없이!)
-
-
-print("\n=== 모든 실습 완료! ===")

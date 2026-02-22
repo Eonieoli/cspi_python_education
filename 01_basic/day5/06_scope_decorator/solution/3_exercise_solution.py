@@ -68,6 +68,3 @@ account2.deposit(20000)  # 출력: 20000원 입금되었습니다. 현재 잔액
 print(f"\n총 계좌 수: {BankAccount.total_accounts}개")  # 출력: 총 계좌 수: 2개
 print(account1.account_info)  # 출력: 계좌 정보: 홍길동님, 잔액: 150000원
 print(account2.account_info)  # 출력: 계좌 정보: 김철수님, 잔액: 70000원
-
-
-print("\n=== 모든 문제 정답 확인 완료! ===")

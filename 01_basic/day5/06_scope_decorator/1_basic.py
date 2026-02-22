@@ -148,6 +148,3 @@ class User:
 user = User("홍", "길동")
 print(user.full_name)  # 출력: 홍 길동 (메서드인데 () 없이 호출!)
 print(user.name)  # 출력: 홍
-
-
-print("\n=== 모든 예제 실행 완료! ===")
