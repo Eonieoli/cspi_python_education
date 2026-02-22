@@ -47,12 +47,14 @@ def calculate_stats():
 # 여러 개의 설정 딕셔너리를 받아서 하나로 병합하세요
 # **kwargs를 사용하여 키워드 인수로 받으세요
 # 나중에 전달된 값이 이전 값을 덮어씁니다
-# 타입 힌트: **Any -> Dict[str, Any]
+# 타입 힌트: Dict[str, Any], **Any -> Dict[str, Any]
 #
 # 예시:
-# merge_settings(host="localhost", port=8000, debug=True, port=3000)
-# 결과: {"host": "localhost", "port": 3000, "debug": True}
-# (port는 나중 값인 3000으로 덮어씀)
+# base_settings = {"host": "localhost", "port": 8000, "debug": True}
+# settings = merge_settings(base_settings, port=3000)
+# 결과:
+# 기본 설정: {'host': 'localhost', 'port': 8000, 'debug': True}
+# 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
 def merge_settings():
     pass
 
@@ -100,14 +102,14 @@ if __name__ == "__main__":
     print("2. 설정 병합")
     print("=" * 50)
     
-    # settings = merge_settings(
-    #     host="localhost",
-    #     port=8000,
-    #     debug=True,
-    #     port=3000  # port 덮어쓰기
-    # )
+    # base_settings = {"host": "localhost", "port": 8000, "debug": True}
+
+    # settings = merge_settings(base_settings, port=3000)
+    # print(f"기본 설정: {base_settings}")
     # print(f"병합된 설정: {settings}")
-    # 출력: 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
+    # 출력:
+    # 기본 설정: {'host': 'localhost', 'port': 8000, 'debug': True}
+    # 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
     
     print("\n" + "=" * 50)
     print("3. API 요청 정보 생성")

@@ -37,19 +37,21 @@ def calculate_stats(*numbers: int) -> Dict[str, float]:
 # 2. 설정 병합 함수
 # ============================================
 
-def merge_settings(**settings: Any) -> Dict[str, Any]:
+def merge_settings(*setting_dicts: Dict[str, Any]) -> Dict[str, Any]:
     """
-    여러 설정을 하나의 딕셔너리로 병합합니다.
-    나중에 전달된 값이 이전 값을 덮어씁니다.
+    여러 설정 딕셔너리를 하나로 병합합니다.
+    나중에 전달된 딕셔너리의 값이 이전 값을 덮어씁니다.
     
     Args:
-        **settings: 병합할 설정들
+        *setting_dicts: 병합할 설정 딕셔너리들
     
     Returns:
         병합된 설정 딕셔너리
     """
-    # **kwargs는 이미 딕셔너리이므로 그대로 반환
-    return settings
+    result = {}
+    for d in setting_dicts:
+        result.update(d)
+    return result
 
 
 # ============================================
@@ -97,15 +99,18 @@ if __name__ == "__main__":
     print("\n" + "=" * 50)
     print("2. 설정 병합")
     print("=" * 50)
-    
-    settings = merge_settings(
-        host="localhost",
-        port=8000,
-        debug=True,
-        port=3000  # port 덮어쓰기
-    )
+
+    default_settings = {"host": "localhost", "port": 8000, "debug": True}
+    override_settings = {"port": 3000}
+
+    settings = merge_settings(default_settings, override_settings)
+    print(f"기본 설정: {default_settings}")
+    print(f"덮어쓸 설정: {override_settings}")
     print(f"병합된 설정: {settings}")
-    # 출력: 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
+    # 출력:
+    # 기본 설정: {'host': 'localhost', 'port': 8000, 'debug': True}
+    # 덮어쓸 설정: {'port': 3000}
+    # 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
     
     print("\n" + "=" * 50)
     print("3. API 요청 정보 생성")
