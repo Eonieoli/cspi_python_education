@@ -37,20 +37,20 @@ def calculate_stats(*numbers: int) -> Dict[str, float]:
 # 2. 설정 병합 함수
 # ============================================
 
-def merge_settings(*setting_dicts: Dict[str, Any]) -> Dict[str, Any]:
+def merge_settings(base: Dict[str, Any], **overrides: Any) -> Dict[str, Any]:
     """
-    여러 설정 딕셔너리를 하나로 병합합니다.
-    나중에 전달된 딕셔너리의 값이 이전 값을 덮어씁니다.
+    기본 설정에 추가 설정을 병합합니다.
+    **overrides로 전달된 값이 기본 설정을 덮어씁니다.
     
     Args:
-        *setting_dicts: 병합할 설정 딕셔너리들
+        base: 기본 설정 딕셔너리
+        **overrides: 덮어쓸 설정들
     
     Returns:
         병합된 설정 딕셔너리
     """
-    result = {}
-    for d in setting_dicts:
-        result.update(d)
+    result = base.copy()
+    result.update(overrides)
     return result
 
 
@@ -100,16 +100,13 @@ if __name__ == "__main__":
     print("2. 설정 병합")
     print("=" * 50)
 
-    default_settings = {"host": "localhost", "port": 8000, "debug": True}
-    override_settings = {"port": 3000}
+    base_settings = {"host": "localhost", "port": 8000, "debug": True}
 
-    settings = merge_settings(default_settings, override_settings)
-    print(f"기본 설정: {default_settings}")
-    print(f"덮어쓸 설정: {override_settings}")
+    settings = merge_settings(base_settings, port=3000)
+    print(f"기본 설정: {base_settings}")
     print(f"병합된 설정: {settings}")
     # 출력:
     # 기본 설정: {'host': 'localhost', 'port': 8000, 'debug': True}
-    # 덮어쓸 설정: {'port': 3000}
     # 병합된 설정: {'host': 'localhost', 'port': 3000, 'debug': True}
     
     print("\n" + "=" * 50)
